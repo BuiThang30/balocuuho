@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+
+  background: black
+}
+
+.navbar.scrolled {
+  /* Khi cuộn thì đậm hơn */
+  background: rgba(51, 51, 51, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+
+
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff9800;
+}
+
+.map-container {
+  width: 70%;
+  height: 50vh;
+  margin: 80px auto 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #34495e;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.coords-box {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background-color: #ecf0f1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.coords-box:focus {
+  outline: none;
+}
+
+#map {
+  flex: 1;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  width: 70%;
+  height: 180px;
+  background: white;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Panel trái */
+.info-panel {
+  width: 25%;
+  background: #e0ecff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Panel trái */
+.warning {
+  width: 25%;
+  background: #d96363;
+  padding: 20px;
+  text-align: center;
+}
+
+.info-panel h3 {
+  color: #007bff;
+  margin-bottom: 12px;
+}
+
+/* Chữ thông số đồng đều */
+.info-panel h1, 
+.info-panel p {
+  font-size: 22px;
+  margin: 6px 0;
+  font-weight: bold;
+}
+
+/* Màu riêng cho từng thông số */
+#angleX { color: #ff3b3b; }
+#angleY { color: #007bff; }
+#angleZ { color: #28a745; }
+
+#heartRate { color: #e91e63; }
+#spo2 { color: #ff9800; }
+
+/* Panel phải */
+.chart-panel {
+  width: 70%;
+  padding: 15px;
+  background: white;
+}
