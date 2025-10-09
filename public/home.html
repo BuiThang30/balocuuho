@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/image/backpack-bag.svg" type="image/svg+xml">
+  <title>Balo cứu hộ</title>
+  
+  <!-- CSS của Leaflet và style riêng -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Thanh Navigation -->
+  <nav class="navbar">
+    <div class="logo">Balo Cứu Hộ</div>
+  </nav>
+
+  <!-- Khu vực bản đồ -->
+  <div class="map-container">
+    <input id="coords" class="coords-box" type="text" readonly value="Chưa có tọa độ">
+    <div id="map"></div>
+  </div>
+  
+  <!--Cảm  Biến-->
+  <div class="dashboard">
+    <!-- Khối MPU6050 -->
+     <div class="box">
+      <div class="card">
+        <div class="left">
+          <h3 class="title">MPU6050</h3>
+          <p id="angleX">ROLL: --°</p>
+          <p id="angleY">PITCH: --°</p>
+          <p id="angleZ">RAM: --°</p>
+        </div>
+        <div class="center">
+          <canvas id="chartMpu"></canvas>
+        </div>
+        <div class="warning">
+          <h3>Warning</h3>
+          <p id="statusMpu6050" class="status">--</p>
+        </div>
+      </div>
+     </div>
+    
+
+    <!-- Khối MAX30100 -->
+    <div class="box">
+      <div class="card">
+        <div class="left">
+          <h3 class="title">MAX30100</h3>
+          <p id="heartRate">-- bpm</p>
+          <p id="spo2">SpO2: --%</p>
+        </div>
+        <div class="center">
+          <canvas id="chartMax30100"></canvas>
+        </div>
+        <div class="warning">
+          <h3>Warning</h3>
+          <p id="statusMax30100" class="status">--</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Temperature -->
+    <div class="box">
+      <div class="card">
+        <div class="left">
+          <h3 class="title">Temperature</h3>
+          <p id="tempValue" class="temp">-- °C</p>
+        </div>
+
+        <div class="center">
+          <canvas id="chartTemp"></canvas>
+        </div>
+
+        <div class="warning">
+          <h3>Warning</h3>
+          <p id="statusTemperature" class="status">--</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Humidity -->
+    <div class="box">
+      <div class="card">
+        <div class="left">
+          <h3 class="title">Humidity</h3>
+          <p id="humValue" class="temp">-- %</p>
+        </div>
+
+        <div class="center">
+          <canvas id="chartHumidity"></canvas>
+        </div>
+
+        <div class="warning">
+          <h3>Warning</h3>
+          <p id="statusHumidity" class="status">--</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CO2 -->
+    <div class="box">
+      <div class="card">
+        <div class="left">
+          <h3 class="title">CO2</h3>
+          <p id="co2Value" class="temp">-- PPM</p>
+        </div>
+
+        <div class="center">
+          <canvas id="chartCO2"></canvas>
+        </div>
+
+        <div class="warning">
+          <h3>Warning</h3>
+          <p id="statusCO2" class="status">--</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>

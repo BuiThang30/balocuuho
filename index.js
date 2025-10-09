@@ -1,34 +1,36 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path');
-const db = require('./db'); // import database
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-// API nhận dữ liệu từ ESP32
-app.post('/api/sensors', (req, res) => {
-    const { lat, lon, x, y, z, bpm, spo2 } = req.body;
-    db.run(
-        `INSERT INTO SensorsData(lat, lon, x, y, z, bpm, spo2) VALUES (?,?,?,?,?,?,?)`,
-        [lat, lon, x, y, z, bpm, spo2],
-        function(err) {
-            if (err) return res.status(500).json({ error: err.message });
-            res.json({ success: true, id: this.lastID });
-        }
-    );
+// Prevent cache cho tất cả request (vẫn có thể giữ)
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store");
+  next();
 });
 
-// API lấy dữ liệu để hiển thị web
-app.get('/api/sensors', (req, res) => {
-    db.all(`SELECT * FROM SensorsData ORDER BY timestamp DESC LIMIT 50`, [], (err, rows) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json(rows);
-    });
+// Import routes
+const sensorsRoutes = require("./routes/sensors");
+
+// Sử dụng routes
+app.use("/api/sensors", sensorsRoutes);
+
+// Routes
+app.get("/", (req, res) => res.redirect("/home"));
+
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "home.html"));
 });
 
+// Chạy server
 const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Server running at http://localhost:${PORT}`)
+);

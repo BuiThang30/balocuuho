@@ -88,64 +88,148 @@ body {
 }
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
-  margin-top: 20px;
+  text-align: center;
+  padding: 50px;
+  background-color: #000;
+  color: #fff;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
 }
-
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
 .card {
   display: flex;
-  width: 70%;
-  height: 180px;
+  width: 90%;
+  height: 300px;
   background: white;
-  border-radius: 8px;
-  margin: 10px;
+  border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  overflow: hidden;
-}
-
-/* Panel trái */
-.info-panel {
-  width: 25%;
-  background: #e0ecff;
   padding: 20px;
-  text-align: center;
 }
 
-/* Panel trái */
+.left {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  background-color: #4caf50;
+}
+
+/* Warning box */
 .warning {
-  width: 25%;
-  background: #d96363;
-  padding: 20px;
+  width: 15%;
+  box-sizing: border-box;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;     /* quan trọng: căn giữa nội dung */
   text-align: center;
+  color: #fff;             /* dùng màu chung cho header + status */
+  transition: background 0.3s;
+  min-width: 80px;         /* tránh quá nhỏ */
+  word-break: break-word;  /* xuống dòng khi cần */
 }
 
-.info-panel h3 {
-  color: #007bff;
-  margin-bottom: 12px;
+/* Header + status trong warning */
+.warning h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  line-height: 1;
+  color: inherit; /* kế thừa màu từ .warning */
+}
+.warning .status {
+  margin: 0;
+  font-size: 15px;
+  color: inherit; /* kế thừa màu từ .warning */
 }
 
-/* Chữ thông số đồng đều */
-.info-panel h1, 
-.info-panel p {
-  font-size: 22px;
-  margin: 6px 0;
-  font-weight: bold;
-}
+/* Trạng thái màu nền */
+.warning.normal  { background-color: #4caf50; }  /* xanh */
+.warning.alert   { background-color: #ff9800; }  /* cam */
+.warning.danger  { background-color: #f44336; }  /* đỏ */
 
-/* Màu riêng cho từng thông số */
-#angleX { color: #ff3b3b; }
-#angleY { color: #007bff; }
-#angleZ { color: #28a745; }
+/* Các rule khác (chỉ tham khảo) */
+.center { width: 70%; }
+.card .title { font-size: 25px; color: #000; }
 
-#heartRate { color: #e91e63; }
-#spo2 { color: #ff9800; }
 
-/* Panel phải */
-.chart-panel {
+
+.center {
   width: 70%;
-  padding: 15px;
-  background: white;
 }
+
+.card .title  {
+  font-size: 25px;
+  color: #fff;
+}
+
+
+.status {
+  font-size: 14px;
+  color: #fff;
+}
+
+
+/* Responsive Design */
+
+/* 1560px */
+@media (max-width: 1560px) {
+  .card {
+    width: 80%;
+    height: 350px;
+  }
+  .description {
+    max-width: 100%;
+    font-size: 22px;
+  }
+}
+
+
+/* ≤1080px (Laptop nhỏ) */
+@media (max-width: 1440px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+  }
+  .left, .warning {
+    width: 100%;
+    height: 150px;
+  }
+  .center{
+    width: 100%;
+  }
+}
+
+/* ≤780px (Tablet) */
+@media (max-width: 780px) {
+  .card {
+    width: 95%;
+    margin-bottom: 20px;
+  }
+}
+
+/* ≤480px (Mobile) */
+@media (max-width: 480px) {
+  .parameter, .control, .about, .contact-section {
+    padding: 20px;
+  }
+  .card {
+    width: 100%;
+    padding: 10px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .temp {
+    font-size: 22px;
+  }
+}
+
