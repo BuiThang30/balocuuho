@@ -70,9 +70,8 @@ async function checkUser(username, plainPassword) {
   });
 }
 
-// Export đầy đủ
 module.exports = {
-  db,        // instance SQLite
-  addUser,   // hàm thêm user
-  checkUser  // hàm kiểm tra user
+  db,
+  addUser,
+  checkUser
 };
